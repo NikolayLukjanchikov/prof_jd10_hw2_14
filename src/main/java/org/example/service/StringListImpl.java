@@ -6,7 +6,7 @@ public class StringListImpl implements StringList {
     private final int SIZE = 12;
     private final int RESIZE_VALUE = 2;
     private int elementsCounter = 0;
-    private String[] stringList;
+    private String[] stringList ;
 
     public StringListImpl() {
         this.stringList = new String[SIZE];
@@ -82,28 +82,55 @@ public class StringListImpl implements StringList {
 
     @Override
     public boolean contains(String item) {
-        //stringList.
-        return false;
+        boolean isItemInList = false;
+        for (int i = 0; i < elementsCounter; i++) {
+            if (stringList[i].equals(item)) {
+                isItemInList = true;
+                break;
+            }
+        }
+        return isItemInList;
     }
 
     @Override
     public int indexOf(String item) {
-        return 0;
+        int index = -1;
+        for (int i = 0; i < elementsCounter; i++) {
+            if (stringList[i].equals(item)) {
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 
     @Override
     public int lastIndexOf(String item) {
-        return 0;
+        int index = -1;
+        for (int i = elementsCounter - 1; i >= 0; i--) {
+            if (stringList[i].equals(item)) {
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 
     @Override
     public String get(int index) {
-        return null;
+        if ((index >= elementsCounter) || (index >= stringList.length - 1)) {
+            throw new RuntimeException();
+        }
+        return stringList[index];
     }
 
     @Override
     public boolean equals(StringList otherList) {
-        return false;
+//        String[] currentList = new String[elementsCounter];
+//        System.arraycopy(stringList, 0, currentList, 0, elementsCounter);
+        String str1 = (resizeToCurrentCapacity(stringList)).toString();
+        String str2 = (resizeToCurrentCapacity(otherList)).toString();
+        return str1.equals(str2);
     }
 
     @Override
@@ -120,24 +147,35 @@ public class StringListImpl implements StringList {
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return (elementsCounter > 0);
     }
 
     @Override
     public void clear() {
-
+        for (int i = 0; i < elementsCounter; i++) {
+            stringList[i] = null;
+        }
     }
 
     @Override
     public String[] toArray() {
-        return new String[0];
+        String[] newArray = new String[elementsCounter];
+        System.arraycopy(stringList, 0, newArray, 0, elementsCounter);
+        return newArray;
     }
 
     private void resize(int sizeValue) {
-        String[] resizedArray = new String[sizeValue];
-        System.arraycopy(stringList, 0, resizedArray, 0, elementsCounter);
-        stringList = resizedArray;
+        if (sizeValue < elementsCounter) {
+            throw new RuntimeException();
+        } else {
+            String[] resizedArray = new String[sizeValue];
+            System.arraycopy(stringList, 0, resizedArray, 0, elementsCounter);
+            stringList = resizedArray;
+        }
     }
-
-
+    private String[] resizeToCurrentCapacity(StringList strings) {
+            String[] resizedArray = new String[elementsCounter];
+            System.arraycopy(stringList, 0, resizedArray, 0, elementsCounter);
+            return resizedArray;
+        }
 }

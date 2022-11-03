@@ -18,11 +18,19 @@ public class Main {
         System.out.println("Добавляем строку - " + test.add(1,"4 string"));
         System.out.println("кол-во записей в массиве = " + test.size());
         System.out.println(test);
+        System.out.println("Индекс строки с конца - " + test.lastIndexOf("3 string..."));
         System.out.println("Добавляем строку - " + test.set(1,"5 above"));
         System.out.println(test);
         System.out.println("кол-во записей в массиве = " + test.size());
-        System.out.println("Удаляём строку по содержимому - " + test.remove("5 above"));
+        System.out.println("Удаляем строку по содержимому - " + test.remove("5 above"));
         System.out.println(test);
+        System.out.println("Содержит строку ? " + test.contains("5 above"));
+        System.out.println("Индекс строки - " + test.indexOf("3 string..."));
+        System.out.println("Индекс строки с конца - " + test.lastIndexOf("3 string..."));
+        System.out.println("Индекс строки с конца - " + test.get(0));
+        System.out.println(test);
+        System.out.println("Индекс строки с конца - " + test.equals("Second string..., 3 string..."));
+
 
     }
 }
