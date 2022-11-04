@@ -182,7 +182,8 @@ public class StringListImpl implements StringList {
     @Override
     public void clear() {
         Arrays.fill(stringList, null);
-        if (stringList.length > SIZE && elementsCounter < stringList.length / RESIZE_VALUE) {
+        elementsCounter = 0;
+        if (stringList.length > SIZE) {
             resize(stringList.length / RESIZE_VALUE);
         }
     }
