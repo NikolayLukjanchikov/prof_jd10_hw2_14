@@ -6,8 +6,6 @@ import org.example.exception.NullValueException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.sql.Array;
-
 import static org.example.constant.Constants.*;
 import static org.junit.jupiter.api.Assertions.*;
 
