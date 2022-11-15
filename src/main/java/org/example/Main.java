@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.service.StringList;
 import org.example.service.StringListImpl;
 
 import java.util.Arrays;
