@@ -102,28 +102,29 @@ public class Main {
         System.out.println("Добавляем число - " + test.add(10));
         System.out.println("кол-во записей в массиве = " + test.size());
         System.out.println("Удаляем число - " + test.remove(0));
-System.out.println("кол-во записей в массиве = " + test.size());
-System.out.println("Добавляем число - " + test.add(33));
-System.out.println("кол-во записей в массиве = " + test.size());
+        System.out.println("кол-во записей в массиве = " + test.size());
+        System.out.println("Добавляем число - " + test.add(33));
+        System.out.println("кол-во записей в массиве = " + test.size());
         System.out.println(test);
         System.out.println("кол-во записей в массиве = " + test.size());
-       System.out.println("Добавляем строку - " + test.add(1, 888));
-      System.out.println("кол-во записей в массиве = " + test.size());
-       System.out.println(test);
+        System.out.println("Добавляем число - " + test.add(1, 888));
+        System.out.println("кол-во записей в массиве = " + test.size());
+        System.out.println(test);
         Integer test9 = 9;
-       System.out.println("Удаляем строку - " + test.remove(test9));
-       System.out.println("кол-во записей в массиве = " + test.size());System.out.println(test);
-       System.out.println("Индекс строки с конца - " + test.lastIndexOf(0));
-System.out.println("Добавляем строку - " + test.set(1, 77));
-System.out.println(test);
-System.out.println("кол-во записей в массиве = " + test.size());
-Integer test77 = 77;
-System.out.println("Удаляем строку по содержимому - " + test.remove(test77));
-System.out.println(test);
-System.out.println("Содержит строку ? " + test.contains(77));
-       System.out.println("Индекс строки - " + test.indexOf(5));
-       System.out.println("Индекс строки с конца - " + test.lastIndexOf(5));
-        System.out.println("Индекс строки с конца - " + test.get(0));
+        System.out.println("Удаляем число - " + test.remove(test9));
+        System.out.println("кол-во записей в массиве = " + test.size());
+        System.out.println(test);
+        System.out.println("Индекс числа с конца - " + test.lastIndexOf(0));
+        System.out.println("Добавляем число - " + test.set(1, 77));
+        System.out.println(test);
+        System.out.println("кол-во записей в массиве = " + test.size());
+        Integer test77 = 77;
+        System.out.println("Удаляем число по содержимому - " + test.remove(test77));
+        System.out.println(test);
+        System.out.println("Содержит число ? " + test.contains(77));
+        System.out.println("Индекс числа - " + test.indexOf(5));
+        System.out.println("Индекс числа с конца - " + test.lastIndexOf(5));
+        System.out.println("Индекс числа с конца - " + test.get(0));
         System.out.println(test);
         IntegerListImpl testList = new IntegerListImpl();
         testList.add(456);
@@ -135,6 +136,7 @@ System.out.println("Содержит строку ? " + test.contains(77));
         test.clear();
         System.out.println(test);
         System.out.println("кол-во записей в массиве = " + test.size());
-
+//        test.sorting();
+//
     }
 }
