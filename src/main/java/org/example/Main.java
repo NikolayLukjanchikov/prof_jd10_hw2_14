@@ -136,7 +136,7 @@ public class Main {
         test.clear();
         System.out.println(test);
         System.out.println("кол-во записей в массиве = " + test.size());
-//        test.sorting();
+        //test.sorting();
 //
     }
 }

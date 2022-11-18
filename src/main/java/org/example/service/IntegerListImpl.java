@@ -90,14 +90,9 @@ public class IntegerListImpl implements IntegerList {
     @Override
     public boolean contains(Integer item) {
         validateNull(item);
-        boolean isItemInList = false;
-        for (int i = 0; i < elementsCounter; i++) {
-            if (intList[i].equals(item)) {
-                isItemInList = true;
-                break;
-            }
-        }
-        return isItemInList;
+        int[] arrToFind = toIntArray(intList);
+        quickSort(arrToFind, 0, intList.length - 1);
+        return binarySearch(arrToFind, item);
     }
 
     @Override
@@ -135,13 +130,15 @@ public class IntegerListImpl implements IntegerList {
     @Override
     public boolean equals(IntegerList otherList) {
         validateNull(otherList);
-        return Arrays.equals((Arrays.stream(intList).toArray()), otherList.toArray());
+        String str1 = Arrays.toString((resizeToCurrentCapacity(intList)));
+        String str2 = Arrays.toString(resizeToCurrentCapacity(otherList));
+        return str1.equals(str2);
     }
 
 //    @Override
 //    public String toString() {
 //        return "StringListImpl{" +
-//                "stringList=" + Arrays.toString(stringList) +
+//                "stringList=" + Arrays.toString(intList) +
 //                '}';
 //    }
 
@@ -171,6 +168,13 @@ public class IntegerListImpl implements IntegerList {
         return newArray;
     }
 
+    private int[] toIntArray(Integer[] arr) {
+        int result[] = Arrays.stream(arr)
+                .mapToInt(i -> (i == null ? 0 : i))
+                .toArray();
+        return result;
+    }
+
     private void resize(int sizeValue) {
         if (sizeValue < elementsCounter) {
             throw new CapacityOversizeException();
@@ -181,13 +185,14 @@ public class IntegerListImpl implements IntegerList {
         }
     }
 
-    //    private Integer[] resizeToCurrentCapacity(Integer[] strings) {
-//        return Arrays.copyOf(intList, elementsCounter);
-//    }
-//
-//    private Integer[] resizeToCurrentCapacity(IntegerList strings) {
-//        return Arrays.copyOf(intList, elementsCounter);
-//    }
+    private Integer[] resizeToCurrentCapacity(Integer[] strings) {
+        return Arrays.copyOf(intList, elementsCounter);
+    }
+
+    private Integer[] resizeToCurrentCapacity(IntegerList strings) {
+        return Arrays.copyOf(intList, elementsCounter);
+    }
+
     private static void validateNull(Object item) {
         if (item == null) {
             throw new NullValueException("Укажите не null");
@@ -335,5 +340,23 @@ public class IntegerListImpl implements IntegerList {
 //        }
 //        System.arraycopy(buffer, 0, source, left, buffer.length);
 //    }
+
+    private static boolean binarySearch(int[] arr, int element) {
+        int min = 0;
+        int max = arr.length - 1;
+
+        while (min <= max) {
+            int mid = (min + max) / 2;
+            if (element == arr[mid]) {
+                return true;
+            }
+            if (element < arr[mid]) {
+                max = mid - 1;
+            } else {
+                min = mid + 1;
+            }
+        }
+        return false;
+    }
 
 }

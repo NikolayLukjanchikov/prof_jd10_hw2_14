@@ -78,5 +78,5 @@ public interface IntegerList {
     // и вернуть его.
     Integer[] toArray();
 
-    String toString();
+    // String toString();
 }
