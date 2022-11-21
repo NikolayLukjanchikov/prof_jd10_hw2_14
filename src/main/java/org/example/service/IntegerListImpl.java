@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class IntegerListImpl implements IntegerList {
 
     private final int SIZE = 12;
-    private final int RESIZE_VALUE = 2;
+    private final double RESIZE_VALUE = 1.5;
     private int elementsCounter = 0;
     private Integer[] intList;
 
@@ -21,7 +21,7 @@ public class IntegerListImpl implements IntegerList {
     public Integer add(Integer item) {
         validateNull(item);
         if (elementsCounter == intList.length - 1) {
-            resize(intList.length * RESIZE_VALUE);
+            growOrDecrease((int) (intList.length * RESIZE_VALUE));
         }
         intList[elementsCounter] = item;
         Integer addedElement = intList[elementsCounter];
@@ -34,7 +34,7 @@ public class IntegerListImpl implements IntegerList {
         validateNull(item);
         validateCapacity(index);
         if (elementsCounter == intList.length - 1) {
-            resize(intList.length * RESIZE_VALUE);
+            growOrDecrease((int) (intList.length * RESIZE_VALUE));
         }
         for (int i = elementsCounter; i >= index; i--) {
             intList[i + 1] = intList[i];
@@ -65,7 +65,7 @@ public class IntegerListImpl implements IntegerList {
             }
         }
         if (intList.length > SIZE && elementsCounter < intList.length / RESIZE_VALUE) {
-            resize(intList.length / RESIZE_VALUE);
+            growOrDecrease((int) (intList.length / RESIZE_VALUE));
         }
         if (isItemInList) {
             throw new ElementNotFoundException("Элемент отсутствует в списке");
@@ -82,7 +82,7 @@ public class IntegerListImpl implements IntegerList {
         elementsCounter--;
         intList[elementsCounter] = null;
         if (intList.length > SIZE && elementsCounter < intList.length / RESIZE_VALUE) {
-            resize(intList.length / RESIZE_VALUE);
+            growOrDecrease((int) (intList.length / RESIZE_VALUE));
         }
         return deletedString;
     }
@@ -157,7 +157,7 @@ public class IntegerListImpl implements IntegerList {
         Arrays.fill(intList, null);
         elementsCounter = 0;
         if (intList.length > SIZE) {
-            resize(intList.length / RESIZE_VALUE);
+            growOrDecrease((int) (intList.length / RESIZE_VALUE));
         }
     }
 
@@ -175,7 +175,7 @@ public class IntegerListImpl implements IntegerList {
         return result;
     }
 
-    private void resize(int sizeValue) {
+    private void growOrDecrease(int sizeValue) {
         if (sizeValue < elementsCounter) {
             throw new CapacityOversizeException();
         } else {
